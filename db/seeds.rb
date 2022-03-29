@@ -5,4 +5,20 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+# if Rails.env.development?
+#   AdminUser.create!(email: "admin@example.com", password: "password",
+#                     password_confirmation: "password")
+# end
+
+Product.destroy_all
+
+Category.all.each do |category|
+  30.times do
+    p = Product.create(
+      name:        "#{Faker::Commerce.material} #{Faker::Mountain.name}",
+      description: Faker::Hipster.paragraph,
+      price:       Faker::Number.between(from: 15_000, to: 299_999)
+    )
+    p.category = category
+  end
+end
