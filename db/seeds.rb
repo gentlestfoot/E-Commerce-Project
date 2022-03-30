@@ -14,11 +14,12 @@ Product.destroy_all
 
 Category.all.each do |category|
   30.times do
-    p = Product.create(
+    Product.create(
       name:        "#{Faker::Commerce.material} #{Faker::Mountain.name}",
       description: Faker::Hipster.paragraph,
-      price:       Faker::Number.between(from: 15_000, to: 299_999)
+      price:       Faker::Number.between(from: 15_000, to: 299_999),
+      active:      true,
+      category:    category
     )
-    p.category = category
   end
 end
