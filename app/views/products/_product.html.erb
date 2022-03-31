@@ -1,2 +1,17 @@
-<div id="<%= dom_id product %>">
+<div class="column">
+  <div class="card">
+    <% if product.image.present? %>
+      <div class="card-image">
+        <figure class="image">
+          <%= image_tag product.image%>
+        </figure>
+      </div>
+    <% end %>
+
+    <div class="card-content">
+      <p class="title">
+        <%= product.name %>
+      </p>
+    </div>
+  </div>
 </div>

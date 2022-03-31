@@ -5,6 +5,8 @@ ruby "2.7.1"
 gem "activeadmin"
 gem "faker"
 gem 'devise'
+gem "kaminari"
+gem "bulma-rails", "~> 0.9.3"
 # gem 'unsplash'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
