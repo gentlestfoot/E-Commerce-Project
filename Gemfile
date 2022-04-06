@@ -7,6 +7,7 @@ gem "faker"
 gem 'devise'
 gem "kaminari"
 gem "bulma-rails", "~> 0.9.3"
+gem "devise"
 # gem 'unsplash'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
