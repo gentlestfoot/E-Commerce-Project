@@ -6,7 +6,6 @@ gem "activeadmin"
 gem "faker"
 gem 'devise'
 gem "kaminari"
-gem "bulma-rails", "~> 0.9.3"
 gem "devise"
 # gem 'unsplash'
 
@@ -78,3 +77,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "tailwindcss-rails", "~> 2.0"
