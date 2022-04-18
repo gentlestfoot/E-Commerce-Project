@@ -1,34 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="column">
-  <div class="card">
-    <div class="columns">
-      <% if @product.image.present? %>
-        <div class="column">
-          <div class="card-image">
-            <figure class="image">
-              <%= image_tag @product.image %>
-            </figure>
-          </div>
-        </div>
-      <% end %>
-
-      <div class="column">
-        <div class="card-content">
-          <p class="title">
-            <%= @product.name %>
-          </p>
-          <p>
-            <b>$<%= @product.price/100.0 %></b>
-          </p>
-          <p class="">
-            <%= @product.description %>
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render "products/product_details" %>
 
 <div>
   <%= link_to "Edit this product", edit_product_path(@product) %> |
