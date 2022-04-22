@@ -1,4 +1,5 @@
 require "csv"
+require "uri"
 
 Product.destroy_all
 Category.destroy_all
@@ -12,12 +13,15 @@ end
 
 Category.all.each do |category|
   30.times do
-    Product.create(
+    product = Product.create(
       name:        "#{Faker::Commerce.material} #{Faker::Mountain.name}",
       description: Faker::Hipster.paragraph,
       price:       Faker::Number.between(from: 15_000, to: 299_999),
       active:      true,
       category:    category
     )
+
+    downloaded_image = URI.open("https://source.unsplash.com/600x600/?bicycle,#{product.name.split}")
+    product.image.attach(io: downloaded_image, filename: "m-#{product.name}.jpg")
   end
 end
