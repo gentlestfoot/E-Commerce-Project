@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :products
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  get "/:page" => "static#show"
+  get "/cart" => "cart#index"
+  post "/cart" => "cart#add"
   get "/contact" => "static#show"
   get "/categories/:id" => "categories#show"
+  get "/:page" => "static#show"
 end
