@@ -1,0 +1,19 @@
+<div class="container">
+  <h2>Your Shopping Cart<%= session[:cart] %></h2>
+  <% if(session[:cart]) %>
+    <table class="table">
+        <tr>
+          <th>Name</th>
+          <th>Quantity</th>
+        </tr>
+      <% session[:cart].each do |key, value| %>
+        <tr>
+          <td><%= Product.find(key).name unless !key %></td>
+          <td><%= value %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <h5>Your cart is empty</h5>
+  <% end %>
+</div>
