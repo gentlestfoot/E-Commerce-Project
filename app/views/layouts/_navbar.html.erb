@@ -42,16 +42,15 @@
         <%= submit_tag "Search", class: "btn btn-outline-success" %>
       <% end %>
 
-      <% if !user_signed_in? %>
-        <li>
+      <li class="nav-item">
+        <% if !user_signed_in? %>
           <%= link_to "Sign In", user_session_path, class: "nav-link" %>
-        </li>
-      <% else %>
-        <li>
+        <% else %>
           <%= link_to "Sign Out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link" %>
-        </li>
-      <% end %>
-      <li>
+        <% end %>
+      </li>
+
+      <li class="nav-item">
         <%= link_to "/cart", class: "btn btn-primary" do %>
           <i class="bi bi-cart4"></i>
         <% end %>
