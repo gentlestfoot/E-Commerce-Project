@@ -57,6 +57,11 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.search("(name LIKE %#{params[:search]}% OR description LIKE %#{params[:search]}%) AND category_id = #{params[:category]}")
+    yield
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

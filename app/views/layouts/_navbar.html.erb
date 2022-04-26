@@ -18,10 +18,26 @@
           </ul>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+
+      <%= form_tag({controller: "products", action: "search"}, method: "get", class: "d-flex me-2") do %>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search" name="search">
+
+        <div class="input-group me-2">
+          <span class="input-group-text" id="category-label">Category:</span>
+          <select id="category" name="category" class="form-select">
+            <option value="*">
+              All
+            </option>
+            <% Category.order(:name).each do |category| %>
+              <option value=<%= category.id %>>
+                <%= category.name %>
+              </option>
+            <% end %>
+          </select>
+        </div>
+
+        <%= submit_tag "Search", class: "btn btn-outline-success" %>
+      <% end %>
     </div>
   </div>
 </nav>

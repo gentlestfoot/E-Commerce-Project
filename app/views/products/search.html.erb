@@ -1,0 +1,13 @@
+<div class="bg-white">
+  <div class="container">
+    <h2 class="sr-only">Search Results</h2>
+
+    <div class="row">
+      <% @products.each do |product| %>
+        <div class="col">
+          <%= render product %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
