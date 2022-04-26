@@ -28,7 +28,7 @@
         <div class="input-group me-2">
           <span class="input-group-text" id="category-label">Category:</span>
           <select id="category" name="category" class="form-select">
-            <option value="*">
+            <option value="all">
               All
             </option>
             <% Category.order(:name).each do |category| %>
