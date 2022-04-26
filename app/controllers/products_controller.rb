@@ -60,8 +60,8 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.search("(name LIKE %#{params[:search]}% OR description LIKE %#{params[:search]}%) AND category_id = #{params[:category]}")
-    yield
+    @products = Product.where("(name LIKE '%#{params[:search]}%' OR description LIKE '%#{params[:search]}%') AND category_id = #{params[:category]}")
+    render "search"
   end
 
   private
