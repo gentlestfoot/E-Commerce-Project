@@ -60,7 +60,11 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("(name LIKE '%#{params[:search]}%' OR description LIKE '%#{params[:search]}%') AND category_id = #{params[:category]}")
+    query = "name LIKE '%#{params[:search]}%' OR description LIKE '%#{params[:search]}%'"
+    if params[:category] != "all"
+      query = "(#{query}) AND category_id = #{params[:category]}"
+    end
+    @products = Product.where(query)
     render "search"
   end
 
