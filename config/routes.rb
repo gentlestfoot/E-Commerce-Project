@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   post "/checkout" => "cart#checkout"
   post "/cart" => "cart#add"
 
-  get "/:page" => "static#show"
-
   resources :orders
   resources :products
+
+  get "/:page" => "static#show"
 end

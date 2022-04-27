@@ -2,30 +2,25 @@
   <table class="table">
         <tr>
           <th>Item</th>
-          <th>Quantity</th>
           <th>Total Price</th>
         </tr>
       <% @order.products.each do |product| %>
         <tr>
           <td><%= link_to product.name, product_url(product.id) %></td>
-          <td><%= 0 %></td>
-          <td>$<%= product.price * 1 / 100.00 %></td>
+          <td>$<%= product.price %></td>
         </tr>
       <% end %>
       <tr>
         <th>Subtotal</th>
-        <td></td>
         <td>$<%= @order.total_cost %></td>
       </tr>
       <tr>
         <th>Tax</th>
-        <td></td>
-        <td><%= @order.tax_rate / 100 %></td>
+        <td>$<%= @order.total_cost * @order.tax_rate / 100 %></td>
       </tr>
       <tr>
         <th>Total</th>
-        <td></td>
-        <td><%= @order.tax_rate / 100 %></td>
+        <td>$<%= @order.total_cost + (@order.total_cost * @order.tax_rate / 100) %></td>
       </tr>
     </table>
 </div>

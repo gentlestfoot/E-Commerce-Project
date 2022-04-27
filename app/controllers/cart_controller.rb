@@ -16,16 +16,18 @@ class CartController < ApplicationController
 
   def checkout
     new_order = Order.create(
-      user_id: current_user.id,
-      tax_rate: params[:province]
+      user_id:    current_user.id,
+      tax_rate:   params[:province],
+      total_cost: 1
     )
 
-    session[:cart].each do |key|
-      new_order.products << Product.find(key)
+    session[:cart].each do |key, value|
+      order_product = Product.find(key)
+      new_order.products << order_product
+      new_order.total_cost = (order_product.price / 100)
     end
 
     session.delete(:cart)
-    @order = new_order
     redirect_to order_url(new_order.id)
   end
 
