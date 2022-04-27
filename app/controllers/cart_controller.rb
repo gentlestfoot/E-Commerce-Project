@@ -18,13 +18,13 @@ class CartController < ApplicationController
     new_order = Order.create(
       user_id:    current_user.id,
       tax_rate:   params[:province],
-      total_cost: 1
+      total_cost: 0
     )
 
     session[:cart].each do |key, value|
       order_product = Product.find(key)
       new_order.products << order_product
-      new_order.total_cost = (order_product.price / 100)
+      new_order.total_cost = 50
     end
 
     session.delete(:cart)
