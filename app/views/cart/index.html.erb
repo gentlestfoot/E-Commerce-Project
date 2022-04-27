@@ -6,14 +6,36 @@
         <tr>
           <th>Name</th>
           <th>Quantity</th>
+          <th>Total Price</th>
         </tr>
       <% session[:cart].each do |key, value| %>
         <tr>
-          <td><%= Product.find(key).name unless !key %></td>
+          <td><%= link_to Product.find(key).name, product_url(Product.find(key).id) %></td>
           <td><%= value %></td>
+          <td>$<%= Product.find(key).price * value / 100.00 %></td>
         </tr>
       <% end %>
     </table>
+    <%= form_tag({controller: "/cart", action: "checkout"}, method: "post", class: "d-flex col-sm-5") do %>
+      <div class="input-group me-2">
+        <span class="input-group-text" id="category-label">Province</span>
+        <%= select_tag "province", options_for_select([['Alberta', 5],
+                                                      ['British Columbia', 12],
+                                                      ['Manitoba', 12],
+                                                      ['New Brunswick', 15],
+                                                      ['Newfoundland and Labrador', 15],
+                                                      ['Northwest Territories', 5],
+                                                      ['Nova Scotia', 15],
+                                                      ['Nunavut', 5],
+                                                      ['Ontario', 13],
+                                                      ['Prince Edward Island', 15],
+                                                      ['Quebec', 15],
+                                                      ['Saskatchewan', 6],
+                                                      ['Yukon Territory', 5]]), class: "form-select" %>
+      </div>
+
+      <%= submit_tag "Checkout", class: "btn btn-primary" %>
+    <% end %>
   <% else %>
     <h5>Your cart is empty</h5>
   <% end %>

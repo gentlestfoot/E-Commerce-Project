@@ -1,15 +1,19 @@
 Rails.application.routes.draw do
   devise_for :users
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   root to: "products#index"
 
   get "/products/search" => "products#search"
+  get "/categories/:id" => "categories#show"
+
+  get "/cart" => "cart#index"
+  post "/checkout" => "cart#checkout"
+  post "/cart" => "cart#add"
+
+  get "/:page" => "static#show"
+
   resources :orders
   resources :products
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
-  get "/cart" => "cart#index"
-  post "/cart" => "cart#add"
-  get "/contact" => "static#show"
-  get "/categories/:id" => "categories#show"
-  get "/:page" => "static#show"
 end
