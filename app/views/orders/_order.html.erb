@@ -12,15 +12,15 @@
       <% end %>
       <tr>
         <th>Subtotal</th>
-        <td>$<%= @order.total_cost / 100.0 %></td>
+        <td><%= number_to_currency(@order.total_cost / 100.0) %></td>
       </tr>
       <tr>
-        <th>Tax</th>
-        <td>$<%= @order.total_cost * @order.tax_rate / 100.0 %></td>
+        <th>Tax <%= @order.tax_rate %>%</th>
+        <td><%= number_to_currency(@order.total_cost * @order.tax_rate / 10000.0) %></td>
       </tr>
       <tr>
         <th>Total</th>
-        <td>$<%= @order.total_cost + (@order.total_cost * @order.tax_rate / 100.0) %></td>
+        <td><%= number_to_currency(@order.total_cost / 100.0 + (@order.total_cost * @order.tax_rate / 10000.0)) %></td>
       </tr>
     </table>
 </div>

@@ -24,8 +24,10 @@ class CartController < ApplicationController
     session[:cart].each do |key, value|
       order_product = Product.find(key)
       new_order.products << order_product
-      new_order.total_cost = 50
+      new_order.total_cost += order_product.price
     end
+
+    new_order.save
 
     session.delete(:cart)
     redirect_to order_url(new_order.id)
